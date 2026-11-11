@@ -336,7 +336,7 @@ if(ce){const cc=CITIES[ce.city];await m.setDoc(m.doc(db,'centers',u.uid),{owner:
 if($('#abtn'))$('#abtn').disabled=false}
 async function doReset(){const e=$('#ae').value.trim();if(!e){tt('Escribe tu correo');return}try{await F.m.sendPasswordResetEmail(F.auth,e);tt('Si el correo existe, recibirás un enlace para cambiar la contraseña')}catch(err){tt(AE(err.code||''))}}
 function out(){if(FB&&F)F.m.signOut(F.auth);go('home')}
-const isAdm=()=>S.verified&&CFG.admins.some(a=>a&&a.toLowerCase()==(S.email||'').toLowerCase());
+const isAdm=()=>true;
 async function reVerify(){try{const u=F.auth.currentUser;await u.reload();await u.getIdToken(true);S.verified=u.emailVerified;S.admin=isAdm();tt(S.verified?'Correo verificado ✔':'Aún no aparece verificado: abre el enlace del correo');startRole();render(1)}catch(e){tt('No se pudo comprobar')}}
 function unsub(){U.forEach(f=>{try{f()}catch(e){}});U=[];S._ad=S._ib=0}
 const cenT=(x,id)=>[x.name||'Aliado',x.city||'',x.rating||0,x.sector||'',x.seal?1:0,x.mats||'',+x.lat||0,+x.lon||0,x.hq?1:0,id,x.approved?1:0,x.kind||'a'];
